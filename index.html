@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Hemu ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #000;
+}
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    text-align: center;
+    color: white;
+}
+
+.active { display: flex; }
+
+button {
+    padding: 14px 30px;
+    border-radius: 30px;
+    border: none;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.next { background: white; color: black; }
+#yesBtn { background: #ff4b5c; color: white; font-size: 20px; }
+#noBtn { position: absolute; background: #eee; }
+
+/* 💗 HEART COLLAGE */
+.heart-collage {
+    position: relative;
+    width: 320px;
+    height: 280px;
+    margin: 20px auto;
+}
+
+.heart-collage img {
+    width: 95px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 3px solid rgba(255,255,255,0.7);
+    box-shadow: 0 0 18px rgba(255,105,180,0.6);
+    position: absolute;
+}
+
+/* Heart shape placement */
+.img1 { top: 0; left: 60px; }
+.img2 { top: 0; right: 60px; }
+.img3 { top: 90px; left: 0; }
+.img4 { top: 90px; right: 0; }
+.img5 { top: 160px; left: 110px; }
+
+/* 🧸 BABY GIRL FLOATING EMOJIS */
+.baby {
+    position: fixed;
+    font-size: 26px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-100px); opacity: 0; }
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    animation: fall 3s linear infinite;
+}
+@keyframes fall {
+    from { transform: translateY(-10px); }
+    to { transform: translateY(100vh); }
+}
+
+/* Typing text */
+#typedText {
+    max-width: 850px;
+    font-size: 18px;
+    line-height: 1.7;
+    white-space: pre-line;
+}
+
+/* Final love text */
+#loveText {
+    margin-top: 30px;
+    font-size: 42px;
+    font-weight: bold;
+    color: #ff4b5c;
+    opacity: 0;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff4b5c; }
+    to { text-shadow: 0 0 30px #ff9aa2; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 Music -->
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- SLIDE 1 -->
+<div class="slide active" id="slide1" style="background: linear-gradient(#ff758c,#ff7eb3);">
+<h2>Hemu ❤️🌸</h2>
+<p>
+Aap muskuraati ho toh duniya ruk jaati hai 😊<br>
+Aap saath hoti ho toh har kami mit jaati hai 💫
+</p>
+<p>💑🌹💞</p>
+<button class="next" onclick="nextSlide()">Next ➜</button>
+</div>
+
+<!-- SLIDE 2 : HEART COLLAGE -->
+<div class="slide" id="slide2" style="background: linear-gradient(#141E30,#243B55);">
+<h2>My Babygirl 💗🧸</h2>
+<p>Every piece of my heart has you in it 🥹❤️</p>
+
+<div class="heart-collage">
+    <img src="hemu1.jpg" class="img1">
+    <img src="hemu2.jpg" class="img2">
+    <img src="hemu3.jpg" class="img3">
+    <img src="hemu4.jpg" class="img4">
+    <img src="hemu5.jpg" class="img5">
+</div>
+
+<p>🧸💖🎀✨</p>
+<button class="next" onclick="nextSlide()">Next ➜</button>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide" id="slide3" style="background: linear-gradient(#ff512f,#dd2476);">
+<h2>Hemu ❤️🥹</h2>
+<h3>Will you be my Valentine? 💖🌹</h3>
+<button id="yesBtn">Yes 💕</button>
+<button id="noBtn">No 😜</button>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide" id="slide4" style="background: linear-gradient(#000,#1a1a1a);">
+<h2>Forever & Always ❤️♾️</h2>
+<p id="typedText"></p>
+<div id="loveText">I LOVE YOU HEMU 💖🧸</div>
+</div>
+
+<script>
+let current = 1;
+function nextSlide() {
+    document.getElementById("slide"+current).classList.remove("active");
+    current++;
+    document.getElementById("slide"+current).classList.add("active");
+}
+
+/* No button escape */
+const noBtn = document.getElementById("noBtn");
+noBtn.style.top = "60%";
+noBtn.style.left = "55%";
+noBtn.addEventListener("mouseover", moveBtn);
+noBtn.addEventListener("touchstart", moveBtn);
+function moveBtn() {
+    noBtn.style.left = Math.random()*80 + "%";
+    noBtn.style.top = Math.random()*80 + "%";
+}
+
+/* YES CLICK */
+document.getElementById("yesBtn").onclick = () => {
+    document.getElementById("slide3").classList.remove("active");
+    document.getElementById("slide4").classList.add("active");
+    document.getElementById("bgMusic").play();
+    confetti();
+    babyFloat();
+    typeText();
+};
+
+/* Typing text */
+const text = `Aap hi meri sabse khoobsurat subha ho ☀️❤️
+Aap hi meri sabse sundar shaam ho 🌙✨
+
+Aapse hi din hai mera,
+aapse hi meri har raat 🥹💖
+
+I love you so much my love 💕
+You are the best thing that happened to me 🌸
+
+Main hamesha aapka khayal rakhunga,
+aur hamesha aapke saath rahunga 🤍
+
+You are my sweet pyaara bacha 🧸❤️
+My babygirl 💖🥹`;
+
+let index = 0;
+function typeText() {
+    if (index < text.length) {
+        document.getElementById("typedText").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeText, 45);
+    } else {
+        document.getElementById("loveText").style.opacity = 1;
+    }
+}
+
+/* Confetti */
+function confetti() {
+    for(let i=0;i<50;i++){
+        let c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"vw";
+        c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),3000);
+    }
+}
+
+/* 🧸 Baby Girl Emojis */
+function babyFloat() {
+    const emojis = ["🧸","🎀","💖","✨","🌸"];
+    setInterval(()=>{
+        let b = document.createElement("div");
+        b.className = "baby";
+        b.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+        b.style.left = Math.random()*100 + "vw";
+        document.body.appendChild(b);
+        setTimeout(()=>b.remove(),6000);
+    }, 500);
+}
+</script>
+
+</body>
+</html>
